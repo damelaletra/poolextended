@@ -40,18 +40,12 @@ const Home = () => {
   return (
     <>
       {/* Giant 3D Logo Pendulum */}
-      <section className="mobile-p-sm" style={{ textAlign: 'center', margin: '0 0 100px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', zIndex: 1 }}>
-        <div className="pendulum-logo" style={{ marginBottom: '-10px', maxWidth: '1200px', width: '100%', display: 'flex', justifyContent: 'center' }}>
+      {/* We use negative margin top to pull the logo up past the default navbar spacing */}
+      <section className="mobile-p-sm" style={{ textAlign: 'center', margin: '-300px 0 100px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', zIndex: 1, overflowX: 'hidden', width: '100%', maxWidth: '100vw', boxSizing: 'border-box' }}>
+        <div className="pendulum-logo" style={{ marginBottom: '-300px', maxWidth: '2800px', width: '200%', display: 'flex', justifyContent: 'center' }}>
           <Hover3DLogo src="/logo.png" height="auto" />
         </div>
 
-        <div style={{ 
-          display: 'inline-block', padding: '6px 16px', borderRadius: '20px', 
-          background: 'rgba(204, 255, 0, 0.1)', border: '1px solid rgba(204, 255, 0, 0.2)',
-          color: 'var(--accent-color)', fontSize: '0.9rem', fontWeight: 600, letterSpacing: '1px', marginBottom: '24px' 
-        }}>
-          ACTUALIZACIÓN LIQUID V2.0
-        </div>
         <h1 style={{ fontWeight: 700, margin: '0 0 24px 0', lineHeight: 1.0, letterSpacing: '-2px' }}>
           <span style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', display: 'block', marginBottom: '10px' }}>
             Los mejores extended de:
