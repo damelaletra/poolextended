@@ -40,8 +40,8 @@ const Home = () => {
   return (
     <>
       {/* Giant 3D Logo Pendulum */}
-      <section className="mobile-p-sm" style={{ textAlign: 'center', margin: '40px 0 100px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', zIndex: 1 }}>
-        <div className="pendulum-logo" style={{ marginBottom: '10px', maxWidth: '1200px', width: '100%', display: 'flex', justifyContent: 'center' }}>
+      <section className="mobile-p-sm" style={{ textAlign: 'center', margin: '0 0 100px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', zIndex: 1 }}>
+        <div className="pendulum-logo" style={{ marginBottom: '-10px', maxWidth: '1200px', width: '100%', display: 'flex', justifyContent: 'center' }}>
           <Hover3DLogo src="/logo.png" height="auto" />
         </div>
 
