@@ -34,7 +34,7 @@ const Home = () => {
 
   return (
     <>
-      <section style={{ textAlign: 'center', margin: '40px 0 100px 0', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <section className="mobile-p-sm" style={{ textAlign: 'center', margin: '40px 0 100px 0', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={{ 
           display: 'inline-block', padding: '6px 16px', borderRadius: '20px', 
           background: 'rgba(204, 255, 0, 0.1)', border: '1px solid rgba(204, 255, 0, 0.2)',
@@ -59,14 +59,14 @@ const Home = () => {
         <p style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto 48px auto', lineHeight: 1.6 }}>
           La plataforma principal para DJs profesionales. Descubre remixes de alta calidad, video loops y ediciones exclusivas en una impresionante experiencia líquida.
         </p>
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '24px' }}>
+        <div className="mobile-hero-btns" style={{ display: 'flex', justifyContent: 'center', gap: '24px' }}>
           <button className="btn-glass btn-accent" style={{ padding: '16px 36px', fontSize: '1.1rem' }}>Comienza Gratis</button>
           <button className="btn-glass" style={{ padding: '16px 36px', fontSize: '1.1rem' }}>Explorar Catálogo</button>
         </div>
       </section>
 
       {/* 3D Liquid Carousel */}
-      <section style={{ 
+      <section className="mobile-carousel" style={{ 
         position: 'relative', height: '400px', display: 'flex', justifyContent: 'center', 
         alignItems: 'center', perspective: '1200px', margin: '0 auto', marginBottom: '100px'
       }}>
@@ -103,7 +103,7 @@ const Home = () => {
           return (
             <div 
               key={card.id} 
-              className="glass-panel" 
+              className="glass-panel mobile-card" 
               onClick={() => {
                 setActiveCard(idx);
                 setCurrentTrack(card);

@@ -13,8 +13,8 @@ const Navbar = () => {
   ];
 
   return (
-    <nav style={{ padding: '24px 48px', position: 'fixed', top: 0, width: '100%', zIndex: 10 }}>
-      <div className="glass-panel" style={{ 
+    <nav className="mobile-nav-pad" style={{ padding: '24px 48px', position: 'fixed', top: 0, width: '100%', zIndex: 10 }}>
+      <div className="glass-panel mobile-nav-container" style={{ 
         display: 'flex', justifyContent: 'space-between', alignItems: 'center', 
         padding: '12px 32px', borderRadius: '50px', maxWidth: '1400px', margin: '0 auto',
         position: 'relative', overflow: 'hidden'
@@ -25,7 +25,7 @@ const Navbar = () => {
             <img src="/logo.png" alt="Logo" style={{ height: '40px', objectFit: 'contain' }} />
           </Link>
         </div>
-        <div style={{ display: 'flex', gap: '40px', position: 'relative', zIndex: 1 }}>
+        <div className="mobile-nav-links" style={{ display: 'flex', gap: '40px', position: 'relative', zIndex: 1 }}>
           {navLinks.map((link) => {
             const isActive = location.pathname === link.path;
             return (
@@ -50,9 +50,9 @@ const Navbar = () => {
             )
           })}
         </div>
-        <div style={{ display: 'flex', gap: '16px', position: 'relative', zIndex: 1 }}>
-          <button className="btn-glass" style={{ border: 'none', background: 'transparent' }}>Iniciar Sesión</button>
-          <button className="btn-glass btn-accent">Registrarse</button>
+        <div style={{ display: 'flex', gap: '12px', position: 'relative', zIndex: 1 }}>
+          <button className="btn-glass mobile-hide" style={{ border: 'none', background: 'transparent', padding: '8px 16px' }}>Iniciar Sesión</button>
+          <button className="btn-glass btn-accent" style={{ padding: '8px 20px' }}>Registrarse</button>
         </div>
       </div>
     </nav>

@@ -134,3 +134,35 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* Mobile Responsive Utility Classes */
+@media (max-width: 768px) {
+  .mobile-hide { display: none !important; }
+  .mobile-col { flex-direction: column !important; }
+  .mobile-center { justify-content: center !important; text-align: center !important; }
+  .mobile-wrap { flex-wrap: wrap !important; }
+  
+  /* Paddings */
+  .mobile-nav-pad { padding: 12px 16px !important; }
+  .mobile-p-sm { padding: 12px 16px !important; }
+  .mobile-gap-sm { gap: 12px !important; }
+  
+  /* Layout Sizing */
+  .mobile-w-full { width: 100% !important; box-sizing: border-box !important; }
+  .mobile-h-auto { height: auto !important; }
+  
+  /* Specific UI Adjustments */
+  .mobile-hero-btns { flex-direction: column !important; gap: 12px !important; padding: 0 20px !important; }
+  .mobile-hero-btns button { width: 100% !important; }
+  
+  .mobile-carousel { perspective: 800px !important; margin-bottom: 20px !important; height: 320px !important; }
+  .mobile-card { width: 200px !important; height: 260px !important; }
+  
+  .mobile-player { width: 95% !important; padding: 12px !important; flex-wrap: wrap !important; gap: 12px !important; justify-content: center !important; bottom: 20px !important; }
+  .mobile-player-info { margin: 0 !important; width: 100% !important; flex: none !important; justify-content: space-between !important; }
+  .mobile-player-controls { margin: 0 !important; width: 100% !important; justify-content: center !important; gap: 24px !important; }
+  .mobile-player-actions { display: none !important; } /* Hide volume/menu on tiny screens to save space */
+  
+  .mobile-nav-container { flex-wrap: wrap !important; justify-content: center !important; gap: 16px !important; padding: 12px 20px !important; }
+  .mobile-nav-links { gap: 16px !important; font-size: 0.9rem !important; }
+}

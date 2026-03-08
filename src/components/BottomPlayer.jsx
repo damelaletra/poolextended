@@ -83,14 +83,14 @@ const BottomPlayer = () => {
         onEnded={() => setIsPlaying(false)}
       />
 
-      <div className="glass-panel" style={{ 
+      <div className="glass-panel mobile-player" style={{ 
         display: 'flex', alignItems: 'center', padding: '16px 32px', 
         borderRadius: '50px', justifyContent: 'space-between',
         borderTopColor: 'rgba(255,255,255,0.3)',
         background: 'rgba(255,255,255,0.08)' 
       }}>
         
-        <div className="audio-player-controls">
+        <div className="audio-player-controls mobile-player-controls">
           <button><PreviousIcon /></button>
           <button className="play-btn" onClick={togglePlayPause}>
             {isPlaying ? <PauseIcon /> : <PlayIcon />}
@@ -98,8 +98,8 @@ const BottomPlayer = () => {
           <button><NextIcon /></button>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '20px', flex: 1, margin: '0 40px' }}>
-          <img src={currentTrack.img} alt="cover" style={{ width: '56px', height: '56px', borderRadius: '12px', objectFit: 'cover', boxShadow: '0 4px 10px rgba(0,0,0,0.3)' }} />
+        <div className="mobile-player-info" style={{ display: 'flex', alignItems: 'center', gap: '20px', flex: 1, margin: '0 40px' }}>
+          <img src={currentTrack.img} alt="cover" style={{ width: '48px', height: '48px', borderRadius: '12px', objectFit: 'cover', boxShadow: '0 4px 10px rgba(0,0,0,0.3)' }} />
           <div style={{ minWidth: '150px' }}>
             <div style={{ fontWeight: 600, fontSize: '1rem', marginBottom: '4px' }}>{currentTrack.title}</div>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{currentTrack.dj}</div>
@@ -123,7 +123,7 @@ const BottomPlayer = () => {
           </div>
         </div>
 
-        <div style={{ display: 'flex', gap: '24px', color: 'rgba(255,255,255,0.8)' }}>
+        <div className="mobile-player-actions" style={{ display: 'flex', gap: '24px', color: 'rgba(255,255,255,0.8)' }}>
           <span style={{ cursor: 'pointer', fontSize: '1.2rem', transition: 'color 0.2s' }} onMouseOver={e=>e.target.style.color='#fff'} onMouseOut={e=>e.target.style.color='rgba(255,255,255,0.8)'}>≡</span>
           <span style={{ cursor: 'pointer', fontSize: '1.2rem', transition: 'color 0.2s' }} onMouseOver={e=>e.target.style.color='#fff'} onMouseOut={e=>e.target.style.color='rgba(255,255,255,0.8)'}>🔊</span>
         </div>
