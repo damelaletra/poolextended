@@ -1,0 +1,10 @@
+/* LiquidEther.css */
+.liquid-ether-container {
+  width: 100%;
+  height: 100%;
+  position: absolute; /* Defaulting to absolute to easily overlay on backgrounds */
+  top: 0;
+  left: 0;
+  z-index: -1; /* Place it behind content */
+  pointer-events: auto; /* Required to catch mouse interactions! */
+}

@@ -1,0 +1,136 @@
+:root {
+  font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  
+  /* Vibrant neon palette from reference images */
+  --bg-shape-1: #ff00ff; /* Purple/Pink */
+  --bg-shape-2: #00e5ff; /* Cyan */
+  --bg-shape-3: #ffaa00; /* Orange */
+  
+  /* Authentic Liquid Glass Tokens */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --glass-border-highlight: rgba(255, 255, 255, 0.4);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  
+  --accent-color: #ccff00; /* Neon yellow-green */
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text-primary);
+}
+
+.orb {
+  animation: float 20s infinite alternate ease-in-out;
+}
+
+.orb-2 {
+  animation-delay: -5s;
+}
+
+.orb-3 {
+  animation: float 25s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes float {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(50px, -50px, 0) scale(1.1); }
+  100% { transform: translate3d(-30px, 60px, 0) scale(0.9); }
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border);
+  border-top-color: var(--glass-border-highlight);
+  border-left-color: var(--glass-border-highlight);
+  border-radius: 24px;
+  box-shadow: var(--glass-shadow);
+  transition: all 0.3s ease;
+}
+
+/* Glass Buttons */
+.btn-glass {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border: 1px solid var(--glass-border);
+  padding: 12px 28px;
+  border-radius: 40px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  backdrop-filter: blur(10px);
+  letter-spacing: 0.5px;
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.btn-accent {
+  background: var(--accent-color);
+  color: #0b0914; /* Contrast */
+  border: none;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(204, 255, 0, 0.2);
+}
+
+.btn-accent:hover {
+  background: #d4ff33;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 25px rgba(204, 255, 0, 0.4);
+}
+
+/* Audio Player Controls */
+.audio-player-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.audio-player-controls button {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.audio-player-controls button:hover {
+  transform: scale(1.15);
+}
+
+.audio-player-controls .play-btn {
+  background: white;
+  color: black;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.audio-player-controls .play-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+/* Reset and smooth scroll */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
