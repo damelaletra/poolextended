@@ -9,14 +9,8 @@ import MetallicPaint from '../components/MetallicPaint';
 const Home = () => {
   const { setCurrentTrack } = usePlayer();
   const [activeCard, setActiveCard] = useState(1);
-  const [scrollY, setScrollY] = useState(0);
-
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Only keeping empty effect to not break rules on hooks if you later want to restore functionality
   }, []);
 
   const cards = [
@@ -45,27 +39,11 @@ const Home = () => {
 
   return (
     <>
-      {/* Giant 3D Logo without container box - Parallax Background */}
-      <div style={{
-          position: 'absolute',
-          top: '10px', // Moved much higher up to be right behind the header text
-          left: '50%',
-          transform: `translateX(-50%) translateY(${scrollY * 0.5}px)`, // Enhanced parallax speed
-          width: '95%', // Increased from 80% to be massive
-          maxWidth: '1200px', // Increased max cap
-          zIndex: 0, // Behind the text
-          opacity: Math.max(0.05, 1 - scrollY / 600), // Smooth fade out
-          pointerEvents: scrollY > 100 ? 'none' : 'auto', // Disable hover effect when scrolling down to not block text interaction
-          display: 'flex',
-          justifyContent: 'center'
-      }}>
-        <Hover3DLogo src="/logo.png" height="auto" />
-      </div>
-
+      {/* Giant 3D Logo Pendulum */}
       <section className="mobile-p-sm" style={{ textAlign: 'center', margin: '40px 0 100px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', zIndex: 1 }}>
-        
-        {/* Adds padding to push the rest of the content down since the logo is absolute */}
-        <div style={{ height: 'max(20vh, 150px)', width: '100%' }}></div>
+        <div className="pendulum-logo" style={{ marginBottom: '10px', maxWidth: '1200px', width: '100%', display: 'flex', justifyContent: 'center' }}>
+          <Hover3DLogo src="/logo.png" height="auto" />
+        </div>
 
         <div style={{ 
           display: 'inline-block', padding: '6px 16px', borderRadius: '20px', 
