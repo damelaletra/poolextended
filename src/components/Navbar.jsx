@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import Hover3DLogo from './Hover3DLogo';
 import { BorderBeam } from './BorderBeam';
 
 const Navbar = () => {
@@ -20,9 +21,9 @@ const Navbar = () => {
         position: 'relative', overflow: 'hidden'
       }}>
         <BorderBeam duration={6} size={400} borderWidth={2} colorFrom="#ccff00" colorTo="#00e5ff" delay={0} />
-        <div style={{ position: 'relative', zIndex: 1 }}>
-          <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
-            <img src="/logo.png" alt="Logo" style={{ height: '40px', objectFit: 'contain' }} />
+        <div style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center' }}>
+          <Link to="/" style={{ display: 'block' }}>
+            <Hover3DLogo src="/logo.png" height="40px" />
           </Link>
         </div>
         <div className="mobile-nav-links" style={{ display: 'flex', gap: '40px', position: 'relative', zIndex: 1 }}>
