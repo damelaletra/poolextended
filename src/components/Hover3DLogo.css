@@ -56,4 +56,7 @@
   animation: pendulum 6s ease-in-out infinite;
   transform-origin: center center;
   perspective: 1000px;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }

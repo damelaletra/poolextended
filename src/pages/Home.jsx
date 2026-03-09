@@ -5,6 +5,7 @@ import LiquidEther from '../components/LiquidEther';
 import Hover3DLogo from '../components/Hover3DLogo';
 import { MorphingText } from '../registry/magicui/morphing-text';
 import MetallicPaint from '../components/MetallicPaint';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const { setCurrentTrack } = usePlayer();
@@ -13,12 +14,19 @@ const Home = () => {
     // Only keeping empty effect to not break rules on hooks if you later want to restore functionality
   }, []);
 
-  const cards = [
-    { id: 0, title: "Cyberpunk Mix", dj: "DJ Neon", img: "/covers/cover1.png" },
-    { id: 1, title: "Blinding Lights", dj: "The Weeknd Bootleg", img: "/covers/cover2.png" },
-    { id: 2, title: "Deep House Set", dj: "DJ Eclipse", img: "/covers/cover3.png" },
-    { id: 3, title: "Afro Beats 2026", dj: "DJ Silva", img: "/covers/cover4.png" },
-    { id: 4, title: "Latino Mashup", dj: "DJ Carlos", img: "/covers/cover5.png" },
+  // Mock songs grouped by category to replace the 3D Carousel
+  const recentUploads = [
+    { id: '1', title: "Summer Vibes (Extended Mix)", artist: "DJ Neon", bpm: "125", key: "Am", time: "4:32" },
+    { id: '2', title: "Midnight Groove (Original Mix)", artist: "The Weeknd Bootleg", bpm: "128", key: "Gm", time: "5:10" },
+    { id: '3', title: "Sunset Bounce (Acapella In)", artist: "DJ Eclipse", bpm: "126", key: "C#m", time: "3:45" },
+    { id: '4', title: "Electric Horizon (Club Edit)", artist: "DJ Silva", bpm: "128", key: "Dm", time: "4:20" }
+  ];
+
+  const topDownloads = [
+    { id: '5', title: "Festival Anthem (VIP Edit)", artist: "DJ Carlos", bpm: "130", key: "Fm", time: "4:15" },
+    { id: '6', title: "Classic Rewind (Remix)", artist: "DJ Neon", bpm: "124", key: "Dm", time: "6:20" },
+    { id: '7', title: "Underground Rhythm (Dub)", artist: "The Weeknd Bootleg", bpm: "127", key: "Em", time: "5:45" },
+    { id: '8', title: "Bassline Dropper (Bootleg)", artist: "DJ Silva", bpm: "128", key: "Am", time: "5:00" }
   ];
 
   const genres = [
@@ -41,7 +49,7 @@ const Home = () => {
     <>
       {/* Giant 3D Logo Pendulum */}
       {/* We use negative margin top to pull the logo up past the default navbar spacing */}
-      <section className="mobile-p-sm" style={{ textAlign: 'center', margin: '-300px 0 100px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', zIndex: 1, overflowX: 'hidden', width: '100%', maxWidth: '100vw', boxSizing: 'border-box' }}>
+      <section className="mobile-p-sm" style={{ textAlign: 'center', margin: '-300px 0 100px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', zIndex: 1, width: '100%', boxSizing: 'border-box' }}>
         <div className="pendulum-logo" style={{ marginBottom: '-300px', maxWidth: '2800px', width: '200%', display: 'flex', justifyContent: 'center' }}>
           <Hover3DLogo src="/logo.png" height="auto" />
         </div>
@@ -64,86 +72,91 @@ const Home = () => {
           La plataforma principal para DJs profesionales. Descubre remixes de alta calidad, video loops y ediciones exclusivas en una impresionante experiencia líquida.
         </p>
         <div className="mobile-hero-btns" style={{ display: 'flex', justifyContent: 'center', gap: '24px' }}>
-          <button className="btn-glass btn-accent" style={{ padding: '16px 36px', fontSize: '1.1rem' }}>Comienza Gratis</button>
-          <button className="btn-glass" style={{ padding: '16px 36px', fontSize: '1.1rem' }}>Explorar Catálogo</button>
+          <Link to="/register" className="btn-glass btn-accent" style={{ padding: '16px 36px', fontSize: '1.1rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>Comienza Gratis</Link>
+          <Link to="/remixes" className="btn-glass" style={{ padding: '16px 36px', fontSize: '1.1rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>Explorar Catálogo</Link>
         </div>
       </section>
 
-      {/* 3D Liquid Carousel */}
-      <section className="mobile-carousel" style={{ 
-        position: 'relative', height: '400px', display: 'flex', justifyContent: 'center', 
-        alignItems: 'center', perspective: '1200px', margin: '0 auto', marginBottom: '100px'
-      }}>
-        {cards.map((card, idx) => {
-          const isActive = idx === activeCard;
-          const isLeft = idx < activeCard;
-          
-          let transform = 'translateZ(-200px) scale(0.6)';
-          let opacity = 0;
-          let zIndex = 0;
-
-          if (isActive) {
-            transform = 'translateZ(50px) scale(1.1)';
-            opacity = 1;
-            zIndex = 10;
-          } else if (idx === activeCard - 1) {
-            transform = 'translateX(-220px) translateZ(-50px) rotateY(15deg) scale(0.9)';
-            zIndex = 5;
-            opacity = 0.8;
-          } else if (idx === activeCard + 1) {
-            transform = 'translateX(220px) translateZ(-50px) rotateY(-15deg) scale(0.9)';
-            zIndex = 5;
-            opacity = 0.8;
-          } else if (idx === activeCard - 2) {
-            transform = 'translateX(-400px) translateZ(-150px) rotateY(25deg) scale(0.7)';
-            zIndex = 2;
-            opacity = 0.4;
-          } else if (idx === activeCard + 2) {
-            transform = 'translateX(400px) translateZ(-150px) rotateY(-25deg) scale(0.7)';
-            zIndex = 2;
-            opacity = 0.4;
-          }
-
-          return (
-            <div 
-              key={card.id} 
-              className="glass-panel mobile-card" 
-              onClick={() => {
-                setActiveCard(idx);
-                setCurrentTrack(card);
-              }}
-              style={{ 
-                position: 'absolute',
-                width: '280px',
-                height: '360px',
-                transform,
-                opacity,
-                zIndex,
-                display: 'flex', 
-                flexDirection: 'column', 
-                padding: '16px',
-                cursor: 'pointer',
-                transition: 'all 0.6s cubic-bezier(0.25, 1, 0.5, 1)',
-                boxShadow: isActive ? '0 20px 50px rgba(0,0,0,0.5)' : 'var(--glass-shadow)',
-                pointerEvents: opacity === 0 ? 'none' : 'auto'
-              }}
-            >
-              <div style={{ 
-                flex: 1, 
-                borderRadius: '16px', 
-                marginBottom: '16px', 
-                backgroundImage: `url(${card.img})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                boxShadow: 'inset 0 0 20px rgba(0,0,0,0.5)'
-              }} />
-              <div style={{ textAlign: 'center', paddingBottom: '8px' }}>
-                <h3 style={{ margin: '0 0 6px 0', fontSize: '1.25rem' }}>{card.title}</h3>
-                <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '0.9rem' }}>{card.dj}</p>
+      {/* Recent & Top Tracks Sections */}
+      <section style={{ marginBottom: '80px', display: 'flex', gap: '32px', flexWrap: 'wrap' }}>
+        
+        {/* Subidas Recientes */}
+        <div className="glass-panel" style={{ flex: '1 1 400px', padding: '32px' }}>
+          <h2 style={{ fontSize: '1.8rem', margin: '0 0 24px 0', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '16px' }}>
+            Subidas Recientes
+          </h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            {recentUploads.map((song) => (
+              <div key={song.id} 
+                onClick={() => setCurrentTrack({ title: song.title, dj: song.artist, img: '/logo.png' })}
+                style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'space-between',
+                  padding: '12px 16px', 
+                  background: 'rgba(255,255,255,0.02)', 
+                  borderRadius: '12px',
+                  border: '1px solid rgba(255,255,255,0.05)',
+                  transition: 'background 0.2s ease',
+                  cursor: 'pointer'
+                }}
+                onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.08)'}
+                onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'}
+              >
+                <div>
+                  <h4 style={{ margin: '0 0 4px 0', fontSize: '1.05rem' }}>{song.title}</h4>
+                  <div style={{ display: 'flex', gap: '12px', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
+                    <span>{song.artist}</span>
+                    <span>|</span>
+                    <span>{song.bpm} BPM</span>
+                  </div>
+                </div>
               </div>
-            </div>
-          )
-        })}
+            ))}
+          </div>
+        </div>
+
+        {/* Top Descargas */}
+        <div className="glass-panel" style={{ flex: '1 1 400px', padding: '32px' }}>
+          <h2 style={{ fontSize: '1.8rem', margin: '0 0 24px 0', color: 'var(--accent-color)', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '16px' }}>
+            Top Descargas Diarias
+          </h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            {topDownloads.map((song, idx) => (
+              <div key={song.id} 
+                onClick={() => setCurrentTrack({ title: song.title, dj: song.artist, img: '/logo.png' })}
+                style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'space-between',
+                  padding: '12px 16px', 
+                  background: 'rgba(255,255,255,0.02)', 
+                  borderRadius: '12px',
+                  border: '1px solid rgba(255,255,255,0.05)',
+                  transition: 'background 0.2s ease',
+                  cursor: 'pointer'
+                }}
+                onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.08)'}
+                onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                  <span style={{ fontSize: '1.2rem', fontWeight: 'bold', color: idx < 3 ? 'var(--accent-color)' : 'var(--text-secondary)', width: '20px', textAlign: 'center' }}>
+                    {idx + 1}
+                  </span>
+                  <div>
+                    <h4 style={{ margin: '0 0 4px 0', fontSize: '1.05rem' }}>{song.title}</h4>
+                    <div style={{ display: 'flex', gap: '12px', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
+                      <span>{song.artist}</span>
+                      <span>|</span>
+                      <span>{song.time}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </section>
 
       {/* Featured Genres Categories */}

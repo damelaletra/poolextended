@@ -27,6 +27,9 @@ body {
 
 .orb {
   animation: float 20s infinite alternate ease-in-out;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
 }
 
 .orb-2 {
@@ -53,8 +56,17 @@ body {
   border-left-color: var(--glass-border-highlight);
   border-radius: 24px;
   box-shadow: var(--glass-shadow);
-  transition: all 0.3s ease;
 }
+
+/* Scrollbar hiding utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 
 /* Glass Buttons */
 .btn-glass {
@@ -69,11 +81,15 @@ body {
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   backdrop-filter: blur(10px);
   letter-spacing: 0.5px;
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  transform: translateZ(0);
 }
 
 .btn-glass:hover {
   background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
+  transform: translateY(-2px) translateZ(0);
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
   border-color: rgba(255, 255, 255, 0.4);
 }
@@ -83,13 +99,24 @@ body {
   color: #0b0914; /* Contrast */
   border: none;
   font-weight: 700;
-  box-shadow: 0 4px 20px rgba(204, 255, 0, 0.2);
+  /* Tighter shadow radius to prevent cutting on the container edges */
+  box-shadow: 0 0 8px rgba(204, 255, 0, 0.4);
+  padding: 12px 28px;
+  border-radius: 40px;
+  font-family: 'Space Grotesk', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  letter-spacing: 0.5px;
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  transform: translateZ(0);
 }
 
 .btn-accent:hover {
   background: #d4ff33;
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 6px 25px rgba(204, 255, 0, 0.4);
+  transform: translateY(-2px) scale(1.02) translateZ(0);
+  box-shadow: 0 4px 12px rgba(204, 255, 0, 0.5);
 }
 
 /* Audio Player Controls */

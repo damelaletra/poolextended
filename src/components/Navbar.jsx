@@ -52,8 +52,8 @@ const Navbar = () => {
           })}
         </div>
         <div style={{ display: 'flex', gap: '12px', position: 'relative', zIndex: 1 }}>
-          <button className="btn-glass mobile-hide" style={{ border: 'none', background: 'transparent', padding: '8px 16px' }}>Iniciar Sesión</button>
-          <button className="btn-glass btn-accent" style={{ padding: '8px 20px' }}>Registrarse</button>
+          <Link to="/login" className="btn-glass mobile-hide" style={{ border: 'none', background: 'transparent', padding: '8px 16px', textDecoration: 'none' }}>Iniciar Sesión</Link>
+          <Link to="/register" className="btn-glass btn-accent" style={{ padding: '8px 20px', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>Registrarse</Link>
         </div>
       </div>
     </nav>

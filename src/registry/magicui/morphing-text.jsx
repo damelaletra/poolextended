@@ -9,7 +9,7 @@ const useMorphingText = (texts) => {
 
   useEffect(() => {
     let textIndex = 0;
-    let time = new Date();
+    let time = performance.now();
     let morph = 0;
     let cooldown = cooldownTime;
 
@@ -60,13 +60,12 @@ const useMorphingText = (texts) => {
 
     let animationFrameId;
 
-    function animate() {
+    function animate(currentTime) {
       animationFrameId = requestAnimationFrame(animate);
 
-      const newTime = new Date();
       const shouldIncrementIndex = cooldown > 0;
-      const dt = (newTime.getTime() - time.getTime()) / 1000;
-      time = newTime;
+      const dt = (currentTime - time) / 1000;
+      time = currentTime;
 
       cooldown -= dt;
 
@@ -81,7 +80,7 @@ const useMorphingText = (texts) => {
       }
     }
 
-    animate();
+    animate(performance.now());
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
@@ -125,6 +124,7 @@ export const MorphingText = ({ texts, className = "" }) => {
           display: 'flex', 
           justifyContent: 'center', 
           alignItems: 'center',
+          whiteSpace: 'nowrap',
           fontSize: 'inherit', 
           left: '50%', 
           transform: 'translateX(-50%)' 
@@ -139,6 +139,7 @@ export const MorphingText = ({ texts, className = "" }) => {
           display: 'flex', 
           justifyContent: 'center', 
           alignItems: 'center',
+          whiteSpace: 'nowrap',
           fontSize: 'inherit', 
           left: '50%', 
           transform: 'translateX(-50%)' 

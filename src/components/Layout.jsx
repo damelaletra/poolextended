@@ -11,12 +11,12 @@ const Layout = ({ children }) => {
       <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: -1 }}>
         <LiquidEther
           colors={[ '#5227FF', '#FF9FFC', '#B19EEF' ]}
-          mouseForce={35}
-          cursorSize={120}
+          mouseForce={20}
+          cursorSize={80}
           isViscous={false}
-          iterationsPoisson={16}
-          resolution={0.35}
-          isBounce
+          iterationsPoisson={4}
+          resolution={0.15}
+          isBounce={false}
           autoDemo
           autoSpeed={0.8}
           autoIntensity={1.8}
