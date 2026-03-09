@@ -15,12 +15,15 @@ import Resumen from './pages/dashboard/Resumen';
 import Categorias from './pages/dashboard/Categorias';
 import Usuarios from './pages/dashboard/Usuarios';
 import { PlayerProvider } from './contexts/PlayerContext';
+import { AuthProvider } from './contexts/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
-    <PlayerProvider>
-      <BrowserRouter>
-        <Layout>
+    <AuthProvider>
+      <PlayerProvider>
+        <BrowserRouter>
+          <Layout>
            <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/remixes" element={<Remixes />} />
@@ -30,18 +33,21 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               
-              {/* Dashboard Layout and Routes */}
-              <Route path="/dashboard" element={<DashboardLayout />}>
-                <Route index element={<DashboardIndex />} />
-                <Route path="resumen" element={<Resumen />} />
-                <Route path="categorias" element={<Categorias />} />
-                <Route path="archivos" element={<Archivos />} />
-                <Route path="usuarios" element={<Usuarios />} />
+              {/* Dashboard Layout and Routes - Protected */}
+              <Route element={<ProtectedRoute />}>
+                <Route path="/dashboard" element={<DashboardLayout />}>
+                  <Route index element={<DashboardIndex />} />
+                  <Route path="resumen" element={<Resumen />} />
+                  <Route path="categorias" element={<Categorias />} />
+                  <Route path="archivos" element={<Archivos />} />
+                  <Route path="usuarios" element={<Usuarios />} />
+                </Route>
               </Route>
            </Routes>
         </Layout>
       </BrowserRouter>
-    </PlayerProvider>
+      </PlayerProvider>
+    </AuthProvider>
   );
 }
 

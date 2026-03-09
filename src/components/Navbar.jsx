@@ -1,10 +1,13 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Hover3DLogo from './Hover3DLogo';
 import { BorderBeam } from './BorderBeam';
+import { useAuth } from '../contexts/AuthContext';
 
 const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
 
   const navLinks = [
     { name: 'Inicio', path: '/' },
@@ -51,9 +54,24 @@ const Navbar = () => {
             )
           })}
         </div>
-        <div style={{ display: 'flex', gap: '12px', position: 'relative', zIndex: 1 }}>
-          <Link to="/login" className="btn-glass mobile-hide" style={{ border: 'none', background: 'transparent', padding: '8px 16px', textDecoration: 'none' }}>Iniciar Sesión</Link>
-          <Link to="/register" className="btn-glass btn-accent" style={{ padding: '8px 20px', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>Registrarse</Link>
+        <div style={{ display: 'flex', gap: '12px', position: 'relative', zIndex: 1, alignItems: 'center' }}>
+          {user ? (
+            <>
+              <Link to="/dashboard" className="btn-glass mobile-hide" style={{ border: 'none', background: 'transparent', padding: '8px 16px', textDecoration: 'none' }}>Panel DJ</Link>
+              <button 
+                onClick={() => { logout(); navigate('/'); }} 
+                className="btn-glass btn-accent" 
+                style={{ padding: '8px 20px', display: 'flex', alignItems: 'center', cursor: 'pointer', fontFamily: 'inherit', fontSize: '1rem' }}
+              >
+                Salir
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="btn-glass mobile-hide" style={{ border: 'none', background: 'transparent', padding: '8px 16px', textDecoration: 'none' }}>Iniciar Sesión</Link>
+              <Link to="/register" className="btn-glass btn-accent" style={{ padding: '8px 20px', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>Registrarse</Link>
+            </>
+          )}
         </div>
       </div>
     </nav>
